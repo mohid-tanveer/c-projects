@@ -1,0 +1,4 @@
+theme: minima
+title: project1 (shell)
+description: shell terminal written in C
+markdown: kramdown
