@@ -1,0 +1,4 @@
+theme: minima
+title: project2 (hashmap)
+description: hash table library written in C
+markdown: kramdown
