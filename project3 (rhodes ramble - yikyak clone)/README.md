@@ -2,6 +2,8 @@ _Rhodes Ramble: Yik-Yak Clone with Network Capabilities._
 
 # introduction
 
+Initial project files provided by Marion Lang (@ml8).
+
 In this project, I wrote a clone of the "popular" [Yik Yak
 app](https://yikyak.com/) using sockets and threads, _Rhodes Ramble_.
 
