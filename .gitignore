@@ -50,12 +50,18 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-*.o
-src/my_shell
-src/environment_test
-src/argument_test
-src/stress_test
-src/word_count
-src/idriver
-src/tests/map_test
-src/tests/fnv64_test
+project1 (shell)/src/my_shell
+project1 (shell)/src/environment_test
+project1 (shell)/src/argument_test
+project2 (hashmap)/src/stress_test
+project2 (hashmap)/src/word_count
+project2 (hashmap)/src/idriver
+project2 (hashmap)/src/tests/map_test
+project2 (hashmap)/src/tests/fnv64_test
+project3 (rhodes ramble - yikyak clone)/src/rr_curses_client
+project3 (rhodes ramble - yikyak clone)/src/rr_console_client
+project3 (rhodes ramble - yikyak clone)/src/rr_server
+project3 (rhodes ramble - yikyak clone)/src/scratch/emoji_menu
+project3 (rhodes ramble - yikyak clone)/src/tests/users_test
+project3 (rhodes ramble - yikyak clone)/src/tests/posts_test
+project3 (rhodes ramble - yikyak clone)/src/tests/rr_core_test
