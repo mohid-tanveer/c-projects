@@ -1,5 +1,6 @@
 # c-projects
-projects in c
+
+A compilation of projects written in c
 
 # introduction
 
