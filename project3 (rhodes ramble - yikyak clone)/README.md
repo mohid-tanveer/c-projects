@@ -1,6 +1,6 @@
 _Rhodes Ramble: Yik-Yak Clone with Network Capabilities._
 
-# Introduction
+# introduction
 
 In this project, I wrote a clone of the "popular" [Yik Yak
 app](https://yikyak.com/) using sockets and threads, _Rhodes Ramble_.
@@ -23,9 +23,9 @@ The objectives of this project were:
 * to gain experience reading, writing, and understanding code---C in particular;
 * and to gain experience reading and understanding technical documentation.
 
-# Yik Yak and Rhodes Ramble
+# yik yak and rhodes ramble
 
-## description of Yik Yak
+## description of yik yak
 
 [Yik Yak](https://en.wikipedia.org/wiki/Yik_Yak) is a semi-anonymous social
 media/discussion platform. The initial version of the application was quite
@@ -54,7 +54,7 @@ was posted within 5 miles of their location---though the app allows this
 location to be cached so that someone traveling has access to their local Yik
 Yak "community."
 
-## Rhodes Ramble
+## rhodes ramble
 
 __Rhodes Ramble__ is a clone of Yik Yak. It is a
 client-server system, where user clients post Rambles (Yaks) and comments on
@@ -64,7 +64,7 @@ Rhodes Ramble contains the core features of Yik Yak (semi-anonymous with a
 persistent identity, posts, comments, up/down votes, and user karma) but does not
 implement location-based services.
 
-# The Rhodes Ramble protocol
+# the RR protocol
 
 The Rhodes Ramble app supports a handful of operations:
 
@@ -77,7 +77,7 @@ The Rhodes Ramble app supports a handful of operations:
 * __Get Comments:__ Retrieve a list of all comments for a particular ramble.
 * __Get User Info:__ Get information about a user.
 
-## Data Model
+## data model
 
 The internal data model of Rhodes Ramble has two entities:
 
@@ -95,7 +95,7 @@ The internal data model of Rhodes Ramble has two entities:
   that they belong to. The parent is a post id.
 
 
-## Protocol Definition
+## protocol definition
 
 When a Rhodes Ramble client connects to the Rhodes Ramble server, the server
 waits for and responds to client requests.
@@ -108,7 +108,7 @@ depending on the request type.
 
 ---
 
-# Overview
+# overview
 
 ```
 project3

@@ -1,4 +1,4 @@
-# Introduction
+# introduction
 
 In this project I created a shell in C.
 
@@ -25,13 +25,13 @@ Skills associated with this project are:
 * C syntax and semantics.
 * Debugging a nontrivial C program.
 
-## Example interaction
+## example interaction
 
 [Here's](doc/sample_interaction.md) what a sample interaction within the shell should
 look like.
 
 
-# Overview
+# overview
 
 The structure of the project is as follows:
 
@@ -50,21 +50,9 @@ project1
 
 The source code for the project is in the `src` directory.
 
-# Features
+# features
 
 * Run programs, including programs that take command line arguments.
 * Allow a user to use `cd` to navigate the filesystem structure.
 * Keep a history of commands and allow the user to view their command history
   and optionally re-execute previously-executed commands.
-
-## Phase 1: Parsing the `PATH`
-
-## Phase 2: Implementing the command loop with `exit`
-
-## Phase 3: Implementing `cd` and hard-coding `pwd`
-
-## Phase 4: Running relative path programs
-
-## Phase 5: Finding programs using the `PATH`
-
-## Phase 6: Implementing `history` and `!n`

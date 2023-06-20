@@ -1,4 +1,4 @@
-# Introduction
+# introduction
 
 In this project, I used dynamic memory management in C to implement a
 hash table.
@@ -14,7 +14,7 @@ The objectives of this project were:
 * to implement a linked data structure in C;
 * and to learn about hash tables and one implementation of them.
 
-# Overview
+# overview
 
 ```
 project2
