@@ -145,12 +145,12 @@ icon/karma: ☕/0
 > c 596516649 right!?
 > m 596516649
  1540383426 > (0) ☕ right!?
-> q
 > g
  1681692777 > (1) 🍛 Hello fellow Lynx!
  424238335 > (0) 📙 Rhodes will not learn from this parking fiasco
  596516649 > (1) 📹 It's such a beautiful day!
  1540383426 > (0) ☕ right!?
+> q
 ```
 
 ---
