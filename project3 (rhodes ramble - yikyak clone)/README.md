@@ -108,7 +108,7 @@ character.
 The server responds to a client request with one or more lines of text,
 depending on the request type.
 
-## example running
+## example interaction
 
 ```
 $ ./rr_console_client lily.rhodes.edu 4444
