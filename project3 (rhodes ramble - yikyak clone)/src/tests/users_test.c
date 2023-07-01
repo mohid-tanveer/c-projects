@@ -146,7 +146,11 @@ int main() {
   time_t t = time(NULL);
   // time_t t = 1678516687;
   srand(t);
-  printf("seed %lld\n", t);
+#ifdef _WIN32
+    printf("seed %lld\n", t);
+#else
+    printf("seed %ld\n", t);
+#endif
 
   ADD_TEST(test_new_user);
   ADD_TEST(test_reset_user);
