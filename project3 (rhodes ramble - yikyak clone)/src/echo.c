@@ -3,13 +3,10 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <netinet/in.h>
-#include <sys/socket.h>
+#include <WS2tcpip.h>
+#include <winsock2.h>
 #include <sys/types.h>
 
-#include <arpa/inet.h>
-
-#include <netdb.h>
 
 #define BUFFER_SIZE 1024
 #define BACKLOG 10

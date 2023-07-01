@@ -10,7 +10,9 @@
 
 #include "rr_core.h"
 #include "uio.h"
-#include <sys/socket.h>
+#include <WS2tcpip.h>
+#include <winsock2.h>
+#include <sys/types.h>
 
 void init_rr_service() { rr_service_init(); }
 

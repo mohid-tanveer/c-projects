@@ -1,9 +1,9 @@
 #include "conn.h"
 
-#include <netdb.h>
 #include <stdio.h>
 #include <string.h>
-#include <sys/socket.h>
+#include <WS2tcpip.h>
+#include <winsock2.h>
 #include <sys/types.h>
 #include <unistd.h>
 

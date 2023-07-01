@@ -7,13 +7,9 @@
 
 #include <pthread.h>
 
-#include <netinet/in.h>
-#include <sys/socket.h>
+#include <WS2tcpip.h>
+#include <winsock2.h>
 #include <sys/types.h>
-
-#include <arpa/inet.h>
-
-#include <netdb.h>
 
 #include "conn.h"
 #include "rr_service.h"
