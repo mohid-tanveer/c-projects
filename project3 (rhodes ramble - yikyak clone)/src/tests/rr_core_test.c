@@ -185,7 +185,7 @@ int main() {
   time_t t = time(NULL);
   // time_t t = 1678516687;
   srand(t);
-  printf("seed %ld\n", t);
+  printf("seed %lld\n", t);
   ADD_TEST(test_register_user);
   ADD_TEST(test_register_get_user);
   ADD_TEST(test_post);

@@ -4,7 +4,7 @@
 #include "lib/map.h"
 
 // Convert n to a string; hex representation.
-void itoa(char *buff, int len, unsigned int n);
+void my_itoa(char *buff, int len, unsigned int n);
 
 // Returns an int key that is not present in the map.
 //

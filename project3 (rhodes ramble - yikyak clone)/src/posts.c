@@ -30,7 +30,7 @@ struct post_iter_internal {
 // threadsafe.
 const char *idtoa(unsigned int tok) {
   static char buff[ID_BUFF_LEN];
-  itoa(buff, ID_BUFF_LEN, tok);
+  my_itoa(buff, ID_BUFF_LEN, tok);
   return buff;
 }
 

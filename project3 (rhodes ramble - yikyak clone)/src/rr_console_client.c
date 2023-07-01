@@ -10,7 +10,6 @@
 #include <WS2tcpip.h>
 #include <winsock2.h>
 #include <sys/types.h>
-#include <sys/types.h>
 
 #include "conn.h"
 #include "rr_client_lib.h"

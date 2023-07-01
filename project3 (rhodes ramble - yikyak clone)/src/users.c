@@ -18,7 +18,7 @@ map_t *users = NULL;  // map username -> user
 
 const char *toktoa(unsigned int tok) {
   static char buff[TOK_BUFF_LEN];
-  itoa(buff, TOK_BUFF_LEN, tok);
+  my_itoa(buff, TOK_BUFF_LEN, tok);
   return buff;
 }
 

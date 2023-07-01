@@ -40,13 +40,13 @@ tests/rr_core_test: tests/rr_core_test.o rr_core.o tests/test_utils.o lib/map.o 
 	$(CC) $(CFLAGS) -o $@ $^
 
 rr_server: rr_server.o rr_service.o rr_core.o posts.o users.o lib/map.o emojis.o util.o uio.o conn.o
-	$(CC) $(DEBUGGER) -o $@ $^ -lpthread
+	$(CC) $(DEBUGGER) -o $@ $^ -lpthread -lws2_32
 
 rr_console_client: rr_console_client.o uio.o conn.o util.o lib/map.o rr_client_lib.o
-	$(CC) $(DEBUGGER) -o $@ $^
+	$(CC) $(DEBUGGER) -o $@ $^ -lws2_32
 
 rr_curses_client: rr_curses_client.o uio.o conn.o util.o lib/map.o rr_client_lib.o
-	$(CC) $(DEBUGGER) -o $@ $^ -lncursesw -lmenuw -lpanelw -lformw 
+	$(CC) $(DEBUGGER) -o $@ $^ -lncursesw -lmenuw -lpanelw -lformw -lws2_32
 
 scratch/emoji_menu: scratch/emoji_menu.o emojis.o
 	$(CC) $(DEBUGGER) -o $@ $^ -lncursesw -lmenuw

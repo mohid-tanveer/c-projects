@@ -1,13 +1,21 @@
 #include "emojis.h"
+#include <stdint.h>
 
-wchar_t emoji(int idx) { return emojis[idx]; }
+wchar_t emoji(int idx) { 
+  if (idx >= 0 && idx < n_emoji()) {
+        return emojis[idx];
+    }
+    // Return a default emoji or handle the out-of-bounds case as desired
+    return L'\0';
+}
 
 int n_emoji() {
   static int n = 0;
   if (n) {
     return n;
   }
-  wchar_t *e = emojis;
+  n = 0;
+  wchar_t *e = (wchar_t*)emojis;
   while (*e) {
     n++;
     e++;
@@ -15,7 +23,7 @@ int n_emoji() {
   return n;
 }
 
-wchar_t emojis[] = {
+const uint32_t emojis[] = {
     0x1F435, // ; fully-qualified     # 🐵 monkey face
     0x1F412, // ; fully-qualified     # 🐒 monkey
     0x1F98D, // ; fully-qualified     # 🦍 gorilla

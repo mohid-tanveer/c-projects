@@ -69,7 +69,7 @@ uint64_t total_mem_alloc();
 
 #define EXPECT_BOOL_INTERNAL(expr, pos, msg, fmt)                              \
   do {                                                                         \
-    unsigned long r = (unsigned long)(expr);                                   \
+    unsigned long r = expr;                               \
     if ((!pos && r) || (pos && !r)) {                                          \
       fprintf(stderr,                                                          \
               "[%s:%d] Assertion %s failed (expected: " msg "; actual: " fmt   \
@@ -94,8 +94,8 @@ uint64_t total_mem_alloc();
     }                                                                          \
   } while (0);
 
-#define EXPECT_STR_EQ(val0, val1) EXPECT_STR_OP(val0, val1, ==)
-#define EXPECT_STR_NEQ(val0, val1) EXPECT_STR_OP(val0, val1, !=)
+#define EXPECT_STR_EQ(val0, val1) EXPECT_STR_OP((const char*)(val0), (const char*)(val1), ==)
+#define EXPECT_STR_NEQ(val0, val1) EXPECT_STR_OP((const char*)(val0), (const char*)(val1), !=)
 #define EXPECT_STR_LT(val0, val1) EXPECT_STR_OP(val0, val1, <)
 #define EXPECT_STR_LTE(val0, val1) EXPECT_STR_OP(val0, val1, <=)
 #define EXPECT_STR_GT(val0, val1) EXPECT_STR_OP(val0, val1, >)
@@ -158,7 +158,17 @@ uint64_t total_mem_alloc();
 #define EXPECT_PTR_EQ(val0, val1) EXPECT_OPERATOR(val0, val1, ==, "%p", void *)
 #define EXPECT_PTR_NEQ(val0, val1) EXPECT_OPERATOR(val0, val1, !=, "%p", void *)
 
-#define EXPECT_NULL(val0) EXPECT_BOOL_INTERNAL(val0, 0, "null", "%lx")
-#define EXPECT_NOTNULL(val0) EXPECT_BOOL_INTERNAL(val0, 1, "not null", "%lx")
+#define EXPECT_NULL(expr) do { \
+    if ((expr) != NULL) { \
+        fprintf(stderr, "Error: %s:%d: Expected null value, but got non-null.\n", __FILE__, __LINE__); \
+        return 0; \
+    } \
+} while (0)
+#define EXPECT_NOTNULL(expr) do { \
+    if ((expr) == NULL) { \
+        fprintf(stderr, "Error: %s:%d: Expected non-null value, but got null.\n", __FILE__, __LINE__); \
+        return 0; \
+    } \
+} while (0)
 
 #endif

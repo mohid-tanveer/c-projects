@@ -66,7 +66,7 @@ int test_add_root_posts() {
   char buff[BUFF_LEN];
 
   for (int i = 0; i < n_posts; i++) {
-    itoa(buff, BUFF_LEN, i);
+    my_itoa(buff, BUFF_LEN, i);
     post_t *tmp = make_post(i + 1, buff);
     add_post(NULL, tmp);
     free(tmp);
@@ -75,7 +75,7 @@ int test_add_root_posts() {
   post_iter_t *it = post_iter(NULL);
   for (int i = 0; i < n_posts; i++) {
     EXPECT_NOTNULL(it);
-    itoa(buff, BUFF_LEN, i);
+    my_itoa(buff, BUFF_LEN, i);
     EXPECT_STR_EQ(buff, it->post->text);
     snprintf(buff, BUFF_LEN, "%d", i + 1);
     EXPECT_STR_EQ(buff, it->post->user_name);
@@ -99,7 +99,7 @@ int test_add_many_root_posts() {
   char buff[BUFF_LEN];
 
   for (int i = 0; i < n_posts; i++) {
-    itoa(buff, BUFF_LEN, i);
+    my_itoa(buff, BUFF_LEN, i);
     post_t *tmp = make_post(i + 1, buff);
     add_post(NULL, tmp);
     free(tmp);
@@ -108,7 +108,7 @@ int test_add_many_root_posts() {
   post_iter_t *it = post_iter(NULL);
   for (int i = n_posts - size; i < n_posts; i++) {
     EXPECT_NOTNULL(it);
-    itoa(buff, BUFF_LEN, i);
+    my_itoa(buff, BUFF_LEN, i);
     EXPECT_STR_EQ(buff, it->post->text);
     snprintf(buff, BUFF_LEN, "%d", i + 1);
     EXPECT_STR_EQ(buff, it->post->user_name);
@@ -168,7 +168,7 @@ int test_add_many_lookup_many() {
   char buff[BUFF_LEN];
 
   for (int i = 0; i < n_posts; i++) {
-    itoa(buff, BUFF_LEN, i);
+    my_itoa(buff, BUFF_LEN, i);
     post_t *tmp = make_post(i + 1, buff);
     posts[i % size] = add_post(NULL, tmp);
     free(tmp);
@@ -205,7 +205,7 @@ post_t *make_posts(post_t *parent, int n) {
   char buff[BUFF_LEN];
   post_t *post = NULL;
   for (int i = 0; i < n; i++) {
-    itoa(buff, 10, i);
+    my_itoa(buff, 10, i);
     post_t *tmp = make_post(i + 1, buff);
     post = add_post(parent, tmp);
     free(tmp);
@@ -247,9 +247,9 @@ int test_add_comment_iter() {
   post_iter_t *iter = post_iter(parent);
   for (int i = 0; i < n_posts; i++) {
     EXPECT_PTR_EQ(parent, iter->post->parent);
-    itoa(buff, BUFF_LEN, i);
+    my_itoa(buff, BUFF_LEN, i);
     EXPECT_STR_EQ(buff, iter->post->text);
-    itoa(buff, BUFF_LEN, i + 1);
+    my_itoa(buff, BUFF_LEN, i + 1);
     EXPECT_STR_EQ(buff, iter->post->user_name);
     EXPECT_UINT_EQ(i + 2, iter->post->display_icon);
     if (i < n_posts - 1) {
@@ -278,14 +278,14 @@ int test_many_posts_many_comments() {
 
   int c_idx = 0;
   for (int i = 0; i < n_posts; i++) {
-    itoa(buff, BUFF_LEN, i);
+    my_itoa(buff, BUFF_LEN, i);
     post_t *tmp = make_post(i, buff);
     post_t *post = add_post(NULL, tmp);
     free(tmp);
     post_ids[i] = post->id;
     // add half comments now
     for (int j = 0; j < n_comments / 2; j++) {
-      itoa(buff, BUFF_LEN, i * 100 + j);
+      my_itoa(buff, BUFF_LEN, i * 100 + j);
       tmp = make_post(j, buff);
       post_t *c = add_post(post, tmp);
       free(tmp);
@@ -346,7 +346,7 @@ int test_many_posts_many_comments() {
     snprintf(buff, BUFF_LEN, "%d", pid);
     EXPECT_STR_EQ(buff, it->post->user_name);
     for (int i = n_comments / 2; i < n_comments; i++) {
-      itoa(buff, BUFF_LEN, pid * 100 + i);
+      my_itoa(buff, BUFF_LEN, pid * 100 + i);
       post_t *tmp = make_post(i, buff);
       post_t *c = add_post(it->post, tmp);
       free(tmp);
@@ -366,7 +366,7 @@ int test_many_posts_many_comments() {
     post_iter_t *cit;
     for (cit = post_iter(it->post); cit; cit = post_next(cit)) {
       EXPECT_PTR_EQ(it->post, cit->post->parent);
-      itoa(buff, BUFF_LEN, pid * 100 + valid_comments);
+      my_itoa(buff, BUFF_LEN, pid * 100 + valid_comments);
       EXPECT_STR_EQ(buff, cit->post->text);
       snprintf(buff, BUFF_LEN, "%d", valid_comments);
       EXPECT_STR_EQ(buff, cit->post->user_name);
@@ -389,7 +389,7 @@ int main() {
   time_t t = time(NULL);
   // time_t t = 1678516687;
   srand(t);
-  printf("seed %ld\n", t);
+  printf("seed %lld\n", t);
 
   ADD_TEST(test_create);
   ADD_TEST(test_add_root_post);

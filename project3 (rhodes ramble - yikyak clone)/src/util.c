@@ -17,7 +17,7 @@
 
 #include "lib/map.h"
 
-void itoa(char *buff, int len, unsigned int n) { snprintf(buff, len, "%x", n); }
+void my_itoa(char *buff, int len, unsigned int n) { snprintf(buff, len, "%x", n); }
 
 unsigned int unique_int_key(map_t *map) {
   // create random token
@@ -28,28 +28,24 @@ unsigned int unique_int_key(map_t *map) {
     if (!tok) {
       tok++;
     }
-    itoa(buff, 64, tok);
+    my_itoa(buff, 64, tok);
   } while (map_get(map, buff, NULL));
   return tok;
 }
 
 void cat_home_dir(char *buff, int len, char *fname) {
 #ifdef _WIN32
-    PWSTR widePath;
-    if (SUCCEEDED(SHGetKnownFolderPath(&FOLDERID_Profile, 0, NULL, &widePath))) {
-        char narrowPath[MAX_PATH];
-        wcstombs_s(NULL, narrowPath, MAX_PATH, widePath, MAX_PATH);
-        strcat_s(buff, len, narrowPath);
-        strcat_s(buff, len, "\\");
-        strcat_s(buff, len, fname);
-        CoTaskMemFree(widePath);
+    // Windows implementation
+    char userProfile[MAX_PATH];
+    if (SUCCEEDED(SHGetFolderPathA(NULL, CSIDL_PROFILE, NULL, 0, userProfile))) {
+        snprintf(buff, len, "%s\\%s", userProfile, fname);
     }
 #else
-    struct passwd *pw = getpwuid(getuid());
-    const char *homedir = pw->pw_dir;
-    strncat(buff, homedir, len);
-    strncat(buff, "/", len - strlen(buff));
-    strncat(buff, fname, len - strlen(buff));
+    // Unix-like implementation
+    const char *homedir = getenv("HOME");
+    if (homedir) {
+        snprintf(buff, len, "%s/%s", homedir, fname);
+    }
 #endif
 }
 
