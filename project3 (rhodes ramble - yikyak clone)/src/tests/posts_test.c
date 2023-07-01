@@ -389,7 +389,11 @@ int main() {
   time_t t = time(NULL);
   // time_t t = 1678516687;
   srand(t);
+#ifdef _WIN32
   printf("seed %lld\n", t);
+#else
+  printf("seed %ld\n", t);
+#endif
 
   ADD_TEST(test_create);
   ADD_TEST(test_add_root_post);

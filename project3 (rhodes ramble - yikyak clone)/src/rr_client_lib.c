@@ -11,8 +11,15 @@
 #include <wchar.h>
 
 #include "rr_service.h"
+#ifdef _WIN32
 #include <WS2tcpip.h>
 #include <winsock2.h>
+#else
+#include <netinet/in.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+#endif
 #include <sys/types.h>
 #define RR_MAX_MESSAGE_LEN 1024
 // do_login sends a login message to the server in order to authenticate the

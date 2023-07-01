@@ -6,10 +6,17 @@
 #include <stdlib.h>
 #include <string.h>
 
+#ifdef _WIN32
 #include <ncursesw/form.h>
 #include <ncursesw/menu.h>
 #include <ncursesw/ncurses.h>
 #include <ncursesw/panel.h>
+#else
+#include <form.h>
+#include <menu.h>
+#include <ncurses.h>
+#include <panel.h>
+#endif
 
 #include "conn.h"
 #include "rr_client_lib.h"

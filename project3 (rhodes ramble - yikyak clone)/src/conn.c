@@ -2,8 +2,15 @@
 
 #include <stdio.h>
 #include <string.h>
+#ifdef _WIN32
 #include <WS2tcpip.h>
 #include <winsock2.h>
+#else
+#include <netinet/in.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+#endif
 #include <sys/types.h>
 #include <unistd.h>
 

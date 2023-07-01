@@ -3,6 +3,9 @@
     "C_Cpp.errorSquiggles": "enabled",
     "files.associations": {
         "winsock2.h": "c",
-        "stdint.h": "c"
+        "stdint.h": "c",
+        "pthread.h": "c",
+        "inet.h": "c",
+        "netdb.h": "c"
     }
 }

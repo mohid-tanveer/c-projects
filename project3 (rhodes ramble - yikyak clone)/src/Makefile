@@ -22,6 +22,25 @@ APPS+=rr_console_client
 APPS+=rr_curses_client
 APPS+=scratch/emoji_menu
 
+UNAME_S := $(shell uname -s)
+
+ifeq ($(UNAME_S),Windows_NT)
+# Windows-specific linker flags
+	LIBS = -lws2_32 
+	LIBSNCURSE0 = -lpanelw -lformw
+	LIBSNCURSE = -lncursesw -lmenuw
+else ifeq ($(UNAME_S),Darwin)
+# Mac-specific linker flags
+	LIBS = 
+	LIBSNCURSE0 = -lpanelw -lformw
+	LIBSNCURSE = -L/opt/homebrew/opt/ncurses/lib -lncursesw -lmenuw
+else
+# unix-specific linker flags
+	LIBS = 
+	LIBSNCURSE0 = -lpanelw -lformw
+	LIBSNCURSE = -lncursesw -lmenuw
+endif
+
 all: $(TESTS) $(APPS)
 
 test: $(TESTS)
@@ -40,16 +59,16 @@ tests/rr_core_test: tests/rr_core_test.o rr_core.o tests/test_utils.o lib/map.o 
 	$(CC) $(CFLAGS) -o $@ $^
 
 rr_server: rr_server.o rr_service.o rr_core.o posts.o users.o lib/map.o emojis.o util.o uio.o conn.o
-	$(CC) $(DEBUGGER) -o $@ $^ -lpthread -lws2_32
+	$(CC) $(DEBUGGER) -o $@ $^ -lpthread $(LIBS)
 
 rr_console_client: rr_console_client.o uio.o conn.o util.o lib/map.o rr_client_lib.o
-	$(CC) $(DEBUGGER) -o $@ $^ -lws2_32
+	$(CC) $(DEBUGGER) -o $@ $^ $(LIBS)
 
 rr_curses_client: rr_curses_client.o uio.o conn.o util.o lib/map.o rr_client_lib.o
-	$(CC) $(DEBUGGER) -o $@ $^ -lncursesw -lmenuw -lpanelw -lformw -lws2_32
+	$(CC) $(DEBUGGER) -o $@ $^ $(LIBSNCURSE0) $(LIBSNCURSE) $(LIBS)
 
 scratch/emoji_menu: scratch/emoji_menu.o emojis.o
-	$(CC) $(DEBUGGER) -o $@ $^ -lncursesw -lmenuw
+	$(CC) $(DEBUGGER) -o $@ $^ $(LIBSNCURSE)
 
 clean:
 	rm -f *.o tests/*.o scratch/*.o $(TESTS) $(APPS)

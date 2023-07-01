@@ -5,11 +5,17 @@
 #include <time.h>
 #include <unistd.h>
 
+#include <sys/types.h>
 #include <pthread.h>
-
+#ifdef _WIN32
 #include <WS2tcpip.h>
 #include <winsock2.h>
-#include <sys/types.h>
+#else
+#include <netinet/in.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+#endif
 
 #include "conn.h"
 #include "rr_service.h"
