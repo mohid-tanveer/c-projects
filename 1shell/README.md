@@ -1,8 +1,8 @@
-# introduction
+# Shell
 
 In this project I created a shell in C.
 
-This shell interprets user commands and performs delegation to the operating system 
+This shell interprets user commands and performs delegation to the operating system
 on behalf of the user.
 
 The shell will only provide the basic functionality necessary for a user to interact
@@ -30,12 +30,11 @@ Skills associated with this project are:
 [Here's](doc/sample_interaction.md) what a sample interaction within the shell should
 look like.
 
-
-# overview
+## overview
 
 The structure of the project is as follows:
 
-```
+```text
 1shell
 |-- doc                     -- references in this file
 |-- README.md               -- this file
@@ -50,7 +49,7 @@ The structure of the project is as follows:
 
 The source code for the project is in the `src` directory.
 
-# features
+## features
 
 * Run programs, including programs that take command line arguments.
 * Allow a user to use `cd` to navigate the filesystem structure.

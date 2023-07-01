@@ -1,4 +1,4 @@
-# introduction
+# Hash Map
 
 In this project, I used dynamic memory management in C to implement a
 hash table.
@@ -14,11 +14,11 @@ The objectives of this project were:
 * to implement a linked data structure in C;
 * and to learn about hash tables and one implementation of them.
 
-# example interactions
+## example interactions
 
-## idriver
+### idriver
 
-```
+```bash
 $ make idriver
 gcc -g -Wall -Werror   -c -o interactive_driver.o interactive_driver.c
 gcc -g -Wall -Werror   -c -o map.o map.c
@@ -93,9 +93,9 @@ done
 > q
 ```
 
-## word_count and stress_test
+### word_count and stress_test
 
-```
+```bash
 $ ./word_count
 Usage: word_count -f <file> [-s <size>] [-d] [-r]
 Options:
@@ -142,9 +142,10 @@ bytes allocated
 ==54935== For counts of detected and suppressed errors, rerun with: -v
 ==54935== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 ```
-# overview
 
-```
+## overview
+
+```text
 2hashmap
 |-- README.md  ................ This document
 `-- src ....................... Main source code directory

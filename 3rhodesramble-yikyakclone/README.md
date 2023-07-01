@@ -1,6 +1,6 @@
-_Rhodes Ramble: Yik-Yak Clone with Network Capabilities._
+# _Rhodes Ramble: Yik-Yak Clone with Network Capabilities._
 
-# introduction
+## introduction
 
 Initial project files provided by Marion Lang (@ml8).
 
@@ -25,16 +25,16 @@ The objectives of this project were:
 * to gain experience reading, writing, and understanding code---C in particular;
 * and to gain experience reading and understanding technical documentation.
 
-# yik yak and rhodes ramble
+## yik yak and rhodes ramble
 
-## description of yik yak
+### description of yik yak
 
 [Yik Yak](https://en.wikipedia.org/wiki/Yik_Yak) is a semi-anonymous social
 media/discussion platform. The initial version of the application was quite
 simple; users could do one of three actions:
 
 * Users can create short text posts (called Yaks).
-* Users can add short text comments to Yaks. 
+* Users can add short text comments to Yaks.
 * Comments and Yaks have an associated karma value that is changed by a user up-
   or down-voting the comment or yak.
 
@@ -44,7 +44,7 @@ to other users.
 
 Instead, each user is assigned a random emoji. This provides a consistent
 identity across posts and comments. Users can choose to change their emoji if
-they would like to create a new identity. 
+they would like to create a new identity.
 
 Users have a karma value that is the sum of the karma of all of their posts and
 comments.
@@ -56,7 +56,7 @@ was posted within 5 miles of their location---though the app allows this
 location to be cached so that someone traveling has access to their local Yik
 Yak "community."
 
-## rhodes ramble
+### rhodes ramble
 
 __Rhodes Ramble__ is a clone of Yik Yak. It is a
 client-server system, where user clients post Rambles (Yaks) and comments on
@@ -66,7 +66,7 @@ Rhodes Ramble contains the core features of Yik Yak (semi-anonymous with a
 persistent identity, posts, comments, up/down votes, and user karma) but does not
 implement location-based services.
 
-# the RR protocol
+## the RR protocol
 
 The Rhodes Ramble app supports a handful of operations:
 
@@ -79,7 +79,7 @@ The Rhodes Ramble app supports a handful of operations:
 * __Get Comments:__ Retrieve a list of all comments for a particular ramble.
 * __Get User Info:__ Get information about a user.
 
-## data model
+### data model
 
 The internal data model of Rhodes Ramble has two entities:
 
@@ -90,14 +90,12 @@ The internal data model of Rhodes Ramble has two entities:
   emoji and token is changed every time the user logs in. The user's karma is
   the sum of all of their rambles (over all time).
 
-
 * __Post/Comment:__ A ramble/post and a comment are the same entity, internally. Posts
   have an id, an emoji, text, and a parent post. Once a post is created, it is
   immutable. Rambles/posts have a NULL parent, while comments have a parent post
   that they belong to. The parent is a post id.
 
-
-## protocol definition
+### protocol definition
 
 When a Rhodes Ramble client connects to the Rhodes Ramble server, the server
 waits for and responds to client requests.
@@ -110,7 +108,7 @@ depending on the request type.
 
 ## example interaction
 
-```
+```bash
 $ ./rr_console_client lily.rhodes.edu 4444
 trying to read token from /home/mohidtanveer/.rr_token...
 Got cached token 1102520059
@@ -155,9 +153,9 @@ icon/karma: ☕/0
 
 ---
 
-# overview
+## overview
 
-```
+```text
 3rhodesramble-yikyakclone
 |-- README.md  ..................... this document
 `-- src
