@@ -145,7 +145,7 @@ bytes allocated
 # overview
 
 ```
-project2
+2hashmap
 |-- README.md  ................ This document
 `-- src ....................... Main source code directory
     |-- books ................. Files used for word count test

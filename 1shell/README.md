@@ -36,7 +36,7 @@ look like.
 The structure of the project is as follows:
 
 ```
-project1
+1shell
 |-- doc                     -- references in this file
 |-- README.md               -- this file
 `-- src          

@@ -158,7 +158,7 @@ icon/karma: ☕/0
 # overview
 
 ```
-project3
+3rhodesramble-yikyakclone
 |-- README.md  ..................... this document
 `-- src
     |-- conn.h  .................... utility functions for opening/using sockets
@@ -166,7 +166,9 @@ project3
     |-- emojis.h  .................. emoji library
     |-- emojis.c
     |-- lib
-    |   |-- map.h  ................. the map
+    |   |-- map.h  ................. the map structure
+    |   |-- map.c  ................. the map code
+    |   |-- fnv64.h  ............... the hash file
     |   `-- map.o  ................. compiled map code
     |-- Makefile  .................. project Makefile
     |-- posts.h  ................... post/comment data model
