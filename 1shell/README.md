@@ -5,8 +5,8 @@ In this project I created a shell in C.
 This shell interprets user commands and performs delegation to the operating system
 on behalf of the user.
 
-The shell will only provide the basic functionality necessary for a user to interact
-with a Linux system.
+The shell provides the basic functionality necessary for a user to interact
+with any system's(Unix or Windows) terminal.
 
 It essentially runs a loop:
 
