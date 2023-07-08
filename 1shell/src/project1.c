@@ -126,11 +126,19 @@ void commandLoop(int argc, char **argv) {
       break;
     } else if (strncmp(finalCommand, "pwd", 3) == 0) { // prints working
                                                        // directory
+#ifdef _WIN32
+      if (GetCurrentDirectory(CMD_SIZE, currDir) == -1) {
+        perror("GetCurrentDirectory() error");
+      } else {
+        printf("%s\n", currDir);
+      }
+#else
       if (getcwd(currDir, CMD_SIZE) == NULL) {
         perror("getcwd() error");
       } else {
         printf("%s\n", currDir);
       }
+#endif
     } else if (strncmp(finalCommand, "cd", 2) == 0) { // changes current
                                                       // directory
       const char space[] = " ";
@@ -198,6 +206,32 @@ void commandLoop(int argc, char **argv) {
 #endif
     } else { // user wishes to execute an exec that is not in the cwd
       // same as above clears and places new arguments.
+#ifdef _WIN32
+      // Windows-specific code using CreateProcess()
+      STARTUPINFO si;
+      PROCESS_INFORMATION pi;
+      ZeroMemory(&si, sizeof(si));
+      si.cb = sizeof(si);
+      ZeroMemory(&pi, sizeof(pi));
+
+      // Convert command to a mutable TCHAR string
+      TCHAR writableCommand[CMD_SIZE];
+      _tcscpy_s(writableCommand, CMD_SIZE, _T(finalCommand));
+
+      // Create the process
+      if (!CreateProcess(NULL, writableCommand, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi))
+      {
+          printf("Failed to execute command: %s\n", finalCommand);
+          return;
+      }
+
+      // Wait for the process to finish
+      WaitForSingleObject(pi.hProcess, INFINITE);
+
+      // Clean up handles
+      CloseHandle(pi.hProcess);
+      CloseHandle(pi.hThread);
+#else
       extern char **environ;
       char *argv_exec[MAX_ARGS];
       memset(argv_exec, '\0', MAX_ARGS - 1);
@@ -234,6 +268,7 @@ void commandLoop(int argc, char **argv) {
         }
         curr = strtok(NULL, ":");
       }
+#endif
     }
     free(finalCommand);
   }
