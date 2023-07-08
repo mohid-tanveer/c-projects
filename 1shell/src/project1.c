@@ -48,10 +48,18 @@ void print_Path() {
   pathReturned = getenv("PATH");
   strncpy(paths, pathReturned, CMD_SIZE);
   printf("Welcome to MyShell!\nPATH:");
+#ifdef _WIN32
+  char *curr = strtok(paths, ";");
+#else
   char *curr = strtok(paths, ":");
+#endif
   while (curr != NULL) {
     printf("\t%s\n", curr);
+#ifdef _WIN32
+    curr = strtok(NULL, ";");
+#else
     curr = strtok(NULL, ":");
+#endif
   }
 }
 
