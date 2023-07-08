@@ -1,7 +1,7 @@
-#include <pwd.h>
 #ifdef _WIN32
   #include <direct.h>
 #else
+  #include <pwd.h>
   #include <unistd.h>
 #endif
 
