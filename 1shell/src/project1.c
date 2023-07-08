@@ -3,13 +3,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/wait.h>
 
 #ifdef _WIN32
+  #include <tchar.h>
   #include <Windows.h>
 #else
   #include <unistd.h>
   #include <limits.h>
+  #include <sys/wait.h>
 #endif
 
 #define CMD_SIZE 512
