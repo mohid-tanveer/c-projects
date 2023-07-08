@@ -4,7 +4,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/wait.h>
-#include <unistd.h>
+
+#ifdef _WIN32
+  #include <Windows.h>
+#else
+  #include <unistd.h>
+  #include <limits.h>
+#endif
 
 #define CMD_SIZE 512
 #define MAX_ARGS 512
@@ -130,12 +136,44 @@ void commandLoop(int argc, char **argv) {
       // initializes the newDirectory and isolates it from the command.
       char *newDir;
       newDir = strtok(&finalCommand[3], space);
+#ifdef _WIN32
+      if (SetCurrentDirectory(newDir) == -1) {
+        perror("SetCurrentDirectory() error");
+      }
+#else
       if (chdir(newDir) == -1) {
         perror("chdir() error");
       }
+#endif
     } else if (strncmp(finalCommand, "./", 2) == 0) { // runs an executable
       // clears the arguments in argv_exec and places the arguments from the
       // command in it
+#ifdef _WIN32
+      // Windows-specific code using CreateProcess()
+      STARTUPINFO si;
+      PROCESS_INFORMATION pi;
+      ZeroMemory(&si, sizeof(si));
+      si.cb = sizeof(si);
+      ZeroMemory(&pi, sizeof(pi));
+
+      // Convert command to a mutable TCHAR string
+      TCHAR writableCommand[CMD_SIZE];
+      _tcscpy_s(writableCommand, CMD_SIZE, _T(finalCommand));
+
+      // Create the process
+      if (!CreateProcess(NULL, writableCommand, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi))
+      {
+          printf("Failed to execute command: %s\n", finalCommand);
+          return;
+      }
+
+      // Wait for the process to finish
+      WaitForSingleObject(pi.hProcess, INFINITE);
+
+      // Clean up handles
+      CloseHandle(pi.hProcess);
+      CloseHandle(pi.hThread);
+#else
       extern char **environ;
       char *argv_exec[MAX_ARGS];
       memset(argv_exec, '\0', MAX_ARGS - 1);
@@ -156,6 +194,7 @@ void commandLoop(int argc, char **argv) {
       } else { // parent waits
         wait(NULL);
       }
+#endif
     } else { // user wishes to execute an exec that is not in the cwd
       // same as above clears and places new arguments.
       extern char **environ;
