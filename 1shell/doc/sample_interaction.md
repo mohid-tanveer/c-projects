@@ -17,9 +17,6 @@ PATH:   /opt/homebrew/opt/ncurses/bin
         /sbin
         /usr/local/share/dotnet
         ~/.dotnet/tools
-        /opt/homebrew/opt/ncurses/bin
-        /opt/homebrew/bin
-        /opt/homebrew/sbin
 $ pwd
 /Users/mohidtanveer/Documents/Comp Sci Portfolio/c-projects/c-projects/1shell/src
 $ cd ..
