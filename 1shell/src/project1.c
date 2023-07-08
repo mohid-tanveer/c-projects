@@ -58,7 +58,7 @@ void commandLoop(int argc, char **argv) {
     fgets(command, CMD_SIZE, stdin);
     // initialized integer index which will represent where the non-white space
     // characters of the command ends.
-    int index;
+    int index = 0;
     // if no command given prints and continues loop.
     if (strncmp(command, "\n", 1) == 0) {
       printf("no command specified\n");
@@ -83,7 +83,10 @@ void commandLoop(int argc, char **argv) {
     command[index] = '\0';
     // initializes a variable finalCommand that allows for the case when a user
     // requests a command within the history.
-    char *finalCommand;
+    char *finalCommand = malloc(CMD_SIZE);
+    if (finalCommand == NULL) {
+      perror("malloc() error");
+    }
     // if user requests a previous command sets the finalCommand as the command
     // within history. if the index is invalid prints statement and continues
     // the loop.
@@ -96,7 +99,7 @@ void commandLoop(int argc, char **argv) {
       strncpy(finalCommand, get(index), CMD_SIZE);
       printf("%s\n", finalCommand);
     } else {
-      finalCommand = command;
+      strncpy(finalCommand, command, CMD_SIZE);
     }
     // if user wishes to see the history prints history.
     if (strncmp(finalCommand, "history", 7) == 0) {
@@ -189,12 +192,10 @@ void commandLoop(int argc, char **argv) {
           }
           break;
         }
-        else {
-          printf("command was not found. \n");
-        }
         curr = strtok(NULL, ":");
       }
     }
+    free(finalCommand);
   }
 }
 
