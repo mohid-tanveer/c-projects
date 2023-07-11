@@ -79,6 +79,50 @@ The Rhodes Ramble app supports a handful of operations:
 * __Get Comments:__ Retrieve a list of all comments for a particular ramble.
 * __Get User Info:__ Get information about a user.
 
+### code organization and system architecture
+
+The Rhodes Ramble app has two processes: the _client_ and the _server_. In the
+following architecture diagram, the client components are represented with blue
+boxes and the server components are represented with red.
+
+Solid arrows denote interactions via function calls, while dotted arrow
+represent interactions over sockets with the Rhodes Ramble protocol.
+
+![Rhodes Ramble Architecture Diagram](doc/rhodes_ramble_arch.png)
+
+The client process was divided into two components: the frontend UI
+(`rr_console_client.c` or `rr_curses_client.c`) and the _client library_
+(`rr_client_lib.{h,c}`).
+
+The UI component has two responsibilities:
+
+* Establish the connection with the server process
+* Delegate all communication with the server to the client library
+
+The client library is responsible for implementing the Rhodes Ramble protocol.
+It has a set of `do_` and `get_` functions that are used by the UI to perform
+tasks (logging in, voting, commenting, posting) or retrieve data from the server
+(user info, posts, comments).
+
+The server process is divided into three components: the main server that
+listens for incoming client connections (`rr_server.c`), the Rhodes Ramble
+protocol service that parses and executes client requests (`rr_service.{h,c}`),
+and the application core that actually carries out requests by modifying or
+retrieving the data stored on the server (`rr_core.{h,c}`).
+
+The server component (`rr_server.c`) listens for connections on the port
+given by `argv[1]`. When a client connects, the server calls `handle` to
+handle the client connection by reading requests and providing responses in a
+loop until the client disconnects.
+
+This function calls the `parse_and_dispatch` function of the protocol service
+(`rr_service.{h,c}`). The service examines the request that the client made and
+determines which action to execute on the application core. It then calls the
+appropriate function in the core (defined in `rr_core.h`).
+
+When the application core has performed the action requested, the service writes
+the response to the client connection.
+
 ### data model
 
 The internal data model of Rhodes Ramble has two entities:
