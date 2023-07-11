@@ -152,6 +152,8 @@ depending on the request type.
 
 ## example interaction
 
+# example interaction
+
 ```bash
 $ ./rr_console_client lily.rhodes.edu 4444
 trying to read token from /home/mohidtanveer/.rr_token...
@@ -176,21 +178,27 @@ token cached to /home/mohidtanveer/.rr_token...
 > i
 icon/karma: ☕/0
 > g
- 1681692777 > (1) 🍛 Hello fellow Lynx!
- 424238335 > (0) 📙 Rhodes will not learn from this parking fiasco
- 596516649 > (0) 📹 It's such a beautiful day!
+ 1681692777 > (1) 🍛 hey guys!
+ 256487231 > (-12) 🐪 whos throwing this weekend???
+ 424238335 > (48) 📙 rhodes wont ever learn from all these parking issues
+ 837126389 > (-31) 🚆 weed??
+ 596516649 > (23) 📹 it's such a beautiful day!
 > u 596516649
 > g
- 1681692777 > (1) 🍛 Hello fellow Lynx!
- 424238335 > (0) 📙 Rhodes will not learn from this parking fiasco
- 596516649 > (1) 📹 It's such a beautiful day!
+ 1681692777 > (1) 🍛 hey guys!
+ 256487231 > (-12) 🐪 whos throwing this weekend???
+ 424238335 > (48) 📙 rhodes wont ever learn from all these parking issues
+ 837126389 > (-31) 🚆 weed??
+ 596516649 > (24) 📹 it's such a beautiful day!
 > c 596516649 right!?
 > m 596516649
  1540383426 > (0) ☕ right!?
 > g
- 1681692777 > (1) 🍛 Hello fellow Lynx!
- 424238335 > (0) 📙 Rhodes will not learn from this parking fiasco
- 596516649 > (1) 📹 It's such a beautiful day!
+ 1681692777 > (1) 🍛 hey guys!
+ 256487231 > (-12) 🐪 whos throwing this weekend???
+ 424238335 > (48) 📙 rhodes wont ever learn from all these parking issues
+ 837126389 > (-31) 🚆 weed??
+ 596516649 > (24) 📹 it's such a beautiful day!
  1540383426 > (0) ☕ right!?
 > q
 ```
