@@ -152,8 +152,6 @@ depending on the request type.
 
 ## example interaction
 
-# example interaction
-
 ```bash
 $ ./rr_console_client lily.rhodes.edu 4444
 trying to read token from /home/mohidtanveer/.rr_token...
