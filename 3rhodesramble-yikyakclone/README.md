@@ -202,6 +202,8 @@ icon/karma: ☕/0
 ```text
 3rhodesramble-yikyakclone
 |-- README.md  ..................... this document
+|-- doc
+    `-- rhodes_ramble_arch.png  .... system architecture diagram
 `-- src
     |-- conn.h  .................... utility functions for opening/using sockets
     |-- conn.c
