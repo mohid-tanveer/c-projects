@@ -1,7 +1,18 @@
 {
     "configurations": [
         {
-            "name": "myConfigurationName",
+            "name": "Windows",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "compilerPath": "C:/msys64/mingw64/bin/gcc.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++14",
+            "IntelliSenseMode": "gcc-arm"
+        }
+        {
+            "name": "macOS",
             "includePath": [
                 "${workspaceFolder}/**"
             ],
